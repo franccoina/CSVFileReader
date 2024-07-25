@@ -1,0 +1,104 @@
+<!--FECHA: 25.07.24
+    CLAN: GATES
+    DAVID FRANCISCO BLANDÓN MENA -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Metadata and important links for CSS, Google Fonts and Bootstrap Styling -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Welcome to our Places Searcher. Just upload your .csv or .txt file, and then enjoy! TypeScript - Functions, CRUD, OOP, Interfaces, Classes" />
+    <meta name="keywords"
+        content="TypeScript, Crud, Functions, Object Oriented Programming, Interfaces, David, Francisco, Blandon, Mena, franccoina, frn, riwi">
+    <meta name="sitedomain" content="https://riwi.io">
+    <meta name="organization" content=“RIWI_GATES”>
+    <meta name="author" content="David Francisco Blandon Mena">
+    <meta name="designer" content="David Francisco Blandon Mena">
+    <meta name="copyright" content="© 2024 Riwi. All rights reserved">
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="15days">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <title>CSV File Reader</title>
+</head>
+
+<body>
+    <header>
+    </header>
+    <main>
+        <section class="container">
+            <article class="row">
+                <div class="col pt-5">
+                    <h1>CSV File Uploader</h1>
+                </div>
+            </article>
+            Section for Uploading your .csv or .txt file
+            <article class="row">
+                <div class="col-4">
+                    <form action="" id="csvForm">
+                        <div class="mb-3">
+                            <label for="csvFile">CSV File</label>
+                            <input type="file" id="csvFile" class="form-control" name="csvFile" accept=".csv,.txt">
+                        </div>
+                        <div class="mb-3">
+                            <input type="submit" class="btn btn-danger" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </article>
+            Section for Searching
+            <article class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="searchInput" class="form-label">Search</label>
+                        <input type="text" class="form-control" id="searchInput"
+                            placeholder="What do you want to look for today?">
+                    </div>
+                </div>
+            </article>
+            <article class="row">
+                <div class="col">
+                    Section for table with searching results
+                    <div id="displayArea"></div>
+                    Section for pagination/paging
+                    <nav id="paginationControls" class="d-flex justify-content-center"></nav>
+                </div>
+            </article>
+        </section>
+    </main>
+    <!-- Footer with legal info and social media -->
+    <footer id="contact" class="bg-light mt-5 p-5 bg-body-tertiary w-100">
+        <div class="container text-center pt-5">
+            <p class="text-secondary mb-5">Manage your favorite books information!
+                There are many novels, magazines, diaries, comics, encyclopedias,
+                and more... all in one place waiting for you. As someone said some
+                time
+                ago, Books never get old!</p>
+            <div class="footer-links text-center">
+                <!-- Icons from Bootstrap -->
+                <a href="https://x.com/?lang=es" rel="noopener" target="_blank" class="text-secondary mx-4"><i
+                        class="bi bi-twitter-x"></i></a>
+                <a href="https://www.facebook.com/" rel="noopener" target="_blank" class="text-secondary mx-4"><i
+                        class="bi bi-facebook"></i></a>
+                <a href="https://www.instagram.com/?hl=es-la" rel="noopener" target="_blank"
+                    class="text-secondary mx-4"><i class="bi bi-instagram"></i></a>
+            </div>
+            <p class="text-center mt-5 text-secondary">&copy; All rights
+                reserved |
+                Clan Gates from 'Riwi, Be a Coder'</p>
+        </div>
+    </footer>
+    <!-- Script module for JS/TS -->
+    <script type="module" src="../js/index.js"></script>
+</body>
+
+</html>
