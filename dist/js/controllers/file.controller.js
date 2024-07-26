@@ -34,5 +34,13 @@ export class FileController {
         ;
     }
     ;
+    //---------------------------------------- Function for getting or catching data ----------------------------------------
+    getData() {
+        return this.data;
+    }
+    //---------------------------------------- Function for getting column names ----------------------------------------
+    getColumnNames() {
+        return this.columnNames;
+    }
 }
 ;
