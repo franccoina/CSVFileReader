@@ -18,24 +18,24 @@ export function renderTable(tableArray, currentPage, recordsPerPage) {
         const columnName = tableArray.length > 0 ? Object.keys(tableArray[0]) : [];
         // Building our table HTML content
         const tableContent = `
-                            <table class="table table-responsive table-bordered border-dark-subtle">
-                                <thead>
-                                    ${columnName.map((value) => `
-                                        <th scope="col">${value}</th>
-                                        `).join("")}
-                                </thead>
-                                <tbody>
-                                    ${paginatedData.map((row) => `
-                                        <tr>
-                                            ${columnName.map((columnName) => `
-                                                <td scope="col">
-                                                    ${row[columnName || ""]}
-                                                </td>
-                                                `).join("")}
-                                        </tr>
-                                        `).join("")}
-                                </body>
-                            </table>
+                        <table class="table table-responsive table-bordered border-dark-subtle">
+                            <thead>
+                                ${columnName.map((value) => `
+                                    <th scope="col">${value}</th>
+                                    `).join("")}
+                            </thead>
+                            <tbody>
+                                ${paginatedData.map((row) => `
+                                    <tr>
+                                        ${columnName.map((columnName) => `
+                                            <td scope="col">
+                                                ${row[columnName || ""]}
+                                            </td>
+                                            `).join("")}
+                                    </tr>
+                                    `).join("")}
+                            </body>
+                        </table>
                         `;
         return tableContent;
     });
