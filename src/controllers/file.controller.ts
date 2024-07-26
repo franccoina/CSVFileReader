@@ -1,10 +1,10 @@
-import { DataRow, DataTable, ColumnName } from "../models/file.model";
+import { IDataRow, DataTable, ColumnName } from "../models/file.model";
 
 export class FileController {
     private data: DataTable = [];
     private columnNames: ColumnName = [];
 
-    constructor(private fileContent:string){
+    constructor(private fileContent: string){
         this.processFile();
     };
 
@@ -26,7 +26,7 @@ export class FileController {
                 //This allow us to have each and all values from the row record, turned into
                 //an array element
                 const values = row.split(',');
-                const dataRow: DataRow = {};
+                const dataRow: IDataRow = {};
 
                 //We ... the row with our column names, and we assign each column, a
                 //value. The structure defined in the interface is key: value, 
@@ -37,4 +37,14 @@ export class FileController {
             });
         };
     };
+
+    //---------------------------------------- Function for getting or catching data ----------------------------------------
+    getData(): DataTable{
+        return this.data;
+    }
+    
+    //---------------------------------------- Function for getting column names ----------------------------------------
+    getColumnNames(): ColumnName{
+        return this.columnNames;
+    }
 };

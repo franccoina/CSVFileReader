@@ -24,10 +24,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="shortcut icon" href="../../public/icons/favicon.ico" type="image/x-icon">
     <title>CSV File Reader</title>
 </head>
 
@@ -35,49 +36,50 @@
     <header>
     </header>
     <main>
-        <section class="container">
+        <section class="container text-center">
             <article class="row">
-                <div class="col pt-5">
-                    <h1>CSV File Uploader</h1>
+                <div class="col p-5 border border-dark-subtle w-100 mt-5 rounded text-bg-secondary">
+                    <h1><strong>CSV File Render</strong></h1>
                 </div>
             </article>
-            Section for Uploading your .csv or .txt file
-            <article class="row">
+            <!-- Section for Uploading your .csv or .txt file -->
+            <article class="my-5 p-5 row justify-content-center border-dark-subtle border rounded">
                 <div class="col-4">
                     <form action="" id="csvForm">
                         <div class="mb-3">
-                            <label for="csvFile">CSV File</label>
-                            <input type="file" id="csvFile" class="form-control" name="csvFile" accept=".csv,.txt">
+                            <label for="csvFile"><h3>CSV File</h3></label>
+                            <input type="file" id="csvFile" class="form-control border border-dark-subtle" name="csvFile" accept=".csv,.txt">
                         </div>
                         <div class="mb-3">
-                            <input type="submit" class="btn btn-danger" value="Submit">
+                            <input type="submit" class="btn btn-secondary" value="Submit">
                         </div>
                     </form>
                 </div>
             </article>
-            Section for Searching
-            <article class="row">
+            <hr>
+            <!-- Section for Searching -->
+            <article class="py-3 row justify-content-center">
                 <div class="col">
                     <div class="mb-3">
-                        <label for="searchInput" class="form-label">Search</label>
-                        <input type="text" class="form-control" id="searchInput"
+                        <label for="searchInput" id="searchInput" class="form-label"><i class="bi bi-search"></i> Searcher</label>
+                        <input type="text" class="form-control border border-dark-subtle py-2 px-3" id="searchInput"
                             placeholder="What do you want to look for today?">
                     </div>
                 </div>
             </article>
             <article class="row">
                 <div class="col">
-                    Section for table with searching results
-                    <div id="displayArea"></div>
-                    Section for pagination/paging
-                    <nav id="paginationControls" class="d-flex justify-content-center"></nav>
+                    <!-- Section for table with searching results -->
+                    <div id="contentArea"></div>
+                    <!-- Section for pagination/paging -->
+                    <nav id="paginationControls" class="pt-3 d-flex justify-content-center"></nav>
                 </div>
             </article>
         </section>
     </main>
     <!-- Footer with legal info and social media -->
-    <footer id="contact" class="bg-light mt-5 p-5 bg-body-tertiary w-100">
-        <div class="container text-center pt-5">
+    <footer class="mt-5 pb-5 w-100">
+        <div class="bg-body-tertiary border border-dark-subtle container text-center p-5 rounded">
             <p class="text-secondary mb-5">Manage your favorite books information!
                 There are many novels, magazines, diaries, comics, encyclopedias,
                 and more... all in one place waiting for you. As someone said some
@@ -97,8 +99,11 @@
                 Clan Gates from 'Riwi, Be a Coder'</p>
         </div>
     </footer>
-    <!-- Script module for JS/TS -->
-    <script type="module" src="../js/index.js"></script>
+    <!-- Script module for JS/TS and Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+    crossorigin="anonymous"></script>
+    <script type="module" src="../../js/index.js"></script>
 </body>
 
 </html>
