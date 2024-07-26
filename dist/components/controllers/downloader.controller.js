@@ -22,16 +22,16 @@ export function convertCsv(data, columnNames) {
 }
 export function downloadCSV(csvContent, fileName) {
     return __awaiter(this, void 0, void 0, function* () {
-        //Blob object with no ... data and binary*/
+        //Blob object with unalterable data and binary
         const blob = new Blob([csvContent], { type: 'text/csv; charset=UTF-8' });
-        //Downloading the blob as a file*/
+        //Downloading the blob as a file
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
         link.download = fileName;
         document.body.appendChild(link);
         //Trigger
         link.click();
-        //Deletes the link*/
+        //Deletes the link
         document.body.removeChild(link);
     });
 }

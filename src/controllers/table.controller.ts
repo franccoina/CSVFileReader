@@ -1,4 +1,4 @@
-import { DataTable, IDataRow, ColumnName } from "../models/file.model";
+import { DataTable, IDataRow, ColumnName } from "../models/file.model.js";
 
 //---------------------------------- Function for rendering our Table ----------------------------------
 export async function renderTable(tableArray: DataTable, currentPage: number, recordsPerPage: number): Promise<string> {
