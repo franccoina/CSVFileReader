@@ -12,9 +12,13 @@ export interface IDataRow {
 
 export type DataTable = IDataRow[]
 
-//Type for the name of our Columns
+//Type for the goup (array) with the Name of our Columns
 
 export type ColumnName = string[]
+
+//Type for the group (array) with our Values from each row 
+
+export type DataValues = string[]
 
 //----------------------------------- Data Schema -----------------------------------
 

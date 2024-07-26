@@ -7,9 +7,9 @@ export function filterData(tableArray: DataTable, searchTerm: string): DataTable
         return tableArray //Error handler: No need to filter, so return the original array
     }
 
-    const lowerCaseSearchTerm = searchTerm.toLowerCase()
+    const lowerCaseSearchTerm: string = searchTerm.toLowerCase()
 
-    const resultFilterData = tableArray.filter(row => 
+    const resultFilterData: DataTable = tableArray.filter(row => 
         Object.values(row).some(cell=>{
             if(cell === null || cell === undefined){
                 return false //Error handler. We can't use and empty or undefined cell
