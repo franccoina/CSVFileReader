@@ -1,7 +1,7 @@
 //---------------------- Function for filtering records or rows from our Table -------------------
 export function filterData(tableArray, searchTerm) {
     //If the searcher is empty
-    if (!searchTerm) {
+    if (searchTerm === undefined) {
         return tableArray; //Error handler: No need to filter, so return the original array
     }
     const lowerCaseSearchTerm = searchTerm.toLowerCase();

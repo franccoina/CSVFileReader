@@ -1,4 +1,4 @@
-import { IDataRow, DataTable, ColumnName, DataValues } from "../models/file.model";
+import { IDataRow, DataTable, ColumnName, DataValues } from "../models/file.model.js";
 
 export class FileController {
     private data: DataTable = [];
