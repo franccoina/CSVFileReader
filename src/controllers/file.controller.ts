@@ -1,4 +1,4 @@
-import { IDataRow, DataTable, ColumnName } from "../models/file.model";
+import { IDataRow, DataTable, ColumnName, DataValues } from "../models/file.model";
 
 export class FileController {
     private data: DataTable = [];
@@ -25,7 +25,7 @@ export class FileController {
             this.data = rows.slice(1).map(row => {
                 //This allow us to have each and all values from the row record, turned into
                 //an array element
-                const values = row.split(',');
+                const values: DataValues = row.split(',');
                 const dataRow: IDataRow = {};
 
                 //We ... the row with our column names, and we assign each column, a
