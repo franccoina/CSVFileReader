@@ -39,7 +39,8 @@ CSV File Reader is a web application that allows users to upload, display, filte
 
 1. Start transpilating the TypeScript project:
     ```bash
-   tsc --watch```
+   tsc --watch
+    ```
 3. Open in your browser using Live Server Extension in Visual Studio Code.
 
 ## Project Structure
