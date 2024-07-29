@@ -1,20 +1,21 @@
-import { IDataRow, DataTable, ColumnName, DataValues } from "../models/file.model.js";
+import { IDataRow, DataTable, ColumnName } from "../models/file.model.js";
 
 export class FileController {
-    private data: DataTable = [];
-    private columnNames: ColumnName = [];
+    public fileContent: string;
+    public data: DataTable = [];
+    public columnNames: ColumnName = [];
 
-    constructor(private fileContent: string){
-        this.processFile();
+    constructor(fileContent: string){
+        this.fileContent = fileContent;
     };
 
-    //---------------------------------------- Function for processing our file and catching data ----------------------------------------
-    private processFile(): void {
+    //---------------------------------------- Function for processing the csv file and catching data ----------------------------------------
+    public processFile(): void {
         //We split the row each time there is a Line break and creates a new element inside of an array ('rows').
         //Filtering, so we only get the row with content
-        const rows = this.fileContent.split(/[\r\n]+/).filter(row=>{
-            return row.trim() !== '';  // This is for ignoring empty rows and deleting start-end-spaces
-        });
+        const rows = this.fileContent.split(/[\r\n]+/).filter(row =>
+            row.trim() !== ''  // This is for ignoring empty rows and deleting start-end-spaces
+        );
 
         if (rows.length > 0){
             //We take our Data from the element [1], because the element [0] are the Column Names.
@@ -25,7 +26,7 @@ export class FileController {
             this.data = rows.slice(1).map(row => {
                 //This allow us to have each and all values from the row record, turned into
                 //an array element
-                const values: DataValues = row.split(',');
+                const values: string[] = row.split(',');
                 const dataRow: IDataRow = {};
 
                 //We ... the row with our column names, and we assign each column, a
@@ -39,12 +40,28 @@ export class FileController {
     };
 
     //---------------------------------------- Function for getting or catching data ----------------------------------------
-    getData(): DataTable{
+    public getData(): DataTable{
         return this.data;
     }
     
     //---------------------------------------- Function for getting column names ----------------------------------------
-    getColumnNames(): ColumnName{
+    public getColumnNames(): ColumnName{
         return this.columnNames;
+    }
+
+    //---------------------------------------- Function for sorting data ----------------------------------------
+    public sortData(column: string, order: 'asc' | 'desc'): void {
+        this.data.sort((a, b) => {
+            const valueA = a[column].toLowerCase();
+            const valueB = b[column].toLowerCase();
+
+            if (valueA < valueB) {
+                return order === 'asc' ? -1 : 1;
+            }
+            if (valueA > valueB) {
+                return order === 'asc' ? 1 : -1;
+            }
+            return 0;
+        });
     }
 };

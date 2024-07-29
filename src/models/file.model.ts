@@ -16,10 +16,6 @@ export type DataTable = IDataRow[]
 
 export type ColumnName = string[]
 
-//Type for the group (array) with our Values from each row 
-
-export type DataValues = string[]
-
 //----------------------------------- Data Schema -----------------------------------
 
 //For better understanding, here you have a schema of how we are structuring the file data 

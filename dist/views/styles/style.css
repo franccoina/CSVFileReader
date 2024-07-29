@@ -1,10 +1,14 @@
-/* ------------------------------ CSS Styling for Home Page (index.HTML) ------------------------------ */
+/* ------------------------------ CSS Styling for File Reader Homepage (index.HTML) ------------------------------ */
 
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: "Raleway", sans-serif;
+    font-family: "Abel", sans-serif;
+}
+
+h1{
+    font-size:8vw;
 }
 
 ul{
