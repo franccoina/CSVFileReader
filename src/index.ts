@@ -2,7 +2,8 @@ import { FileController } from "./controllers/file.controller.js";
 import { renderTableTemplate } from "./controllers/tableTemplate.controller.js";
 import { filterData } from "./controllers/filter.controller.js";
 import { ColumnName, DataTable } from "./models/file.model.js";
-import { convertToCsv, downloadCSV } from "./controllers/downloaderCSV.controller.js";
+import { convertToCsv } from "./controllers/convertToCSV.controller.js";
+import { downloadCSV } from "./controllers/downloadCSV.controller.js";
 
 //---------------------------------------- Getting elements from HTML -----------------------
 
@@ -59,7 +60,7 @@ function pagination(totalRecords: number, currentPage: number, recordsPerPage: n
         }
     }
 
-    // Page Numbers
+    // Pagination Numbers
     for (let i = startPage; i <= finalPage; i++) {
         paginationHTML += `
                 <li class="page-item ${i === currentPage ? "active" : ''}">
