@@ -31,15 +31,15 @@ CSV File Reader is a web application that allows users to upload, display, filte
     git clone https://github.com/franccoina/CSVFileReader.git
     ```
 2. Globally install TypeScript:
-    ```npm 
-    install -g typescript
+    ```bash
+    npm install -g typescript
     ```
 
 ## How to use it?
 
 1. Start transpilating the TypeScript project:
-    ```tsc
-   --watch```
+    ```bash
+   tsc --watch```
 3. Open in your browser using Live Server Extension in Visual Studio Code.
 
 ## Project Structure
