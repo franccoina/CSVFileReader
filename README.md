@@ -37,10 +37,10 @@ CSV File Reader is a web application that allows users to upload, display, filte
 
 ## How to use it?
 
-1. Start the development server:
-    ```tsc --watch
-    ```
-2. Open in your browser using Live Server Extension in Visual Studio Code.
+1. Start transpilating the TypeScript project:
+    ```tsc
+   --watch```
+3. Open in your browser using Live Server Extension in Visual Studio Code.
 
 ## Project Structure
 
