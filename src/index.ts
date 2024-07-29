@@ -59,7 +59,7 @@ function pagination(totalRecords: number, currentPage: number, recordsPerPage: n
         }
     }
 
-    // Page Numbers
+    // Pagination Numbers
     for (let i = startPage; i <= finalPage; i++) {
         paginationHTML += `
                 <li class="page-item ${i === currentPage ? "active" : ''}">
