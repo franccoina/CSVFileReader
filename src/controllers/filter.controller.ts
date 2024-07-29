@@ -11,7 +11,6 @@ export function filterData(tableArray: DataTable, searchTerm: string): DataTable
 
     return tableArray.filter(row => 
         Object.values(row).some(cell=>{
-            if(cell === null || cell === undefined) return false //Error handler. We can't use and empty or undefined cell
             return cell.toString().toLowerCase().includes(lowerCaseSearchTerm)
         })
     )

@@ -8,26 +8,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 //---------------------------------- Function for rendering our Table ----------------------------------
-export function renderTable(tableArray, currentPage, recordsPerPage) {
+export function renderTableTemplate(tableArray, currentPage, recordsPerPage, sortColumn, sortOrder) {
     return __awaiter(this, void 0, void 0, function* () {
         // Index start and end
         const startIndex = (currentPage - 1) * recordsPerPage;
         const endIndex = startIndex + recordsPerPage;
-        const paginatedData = tableArray.slice(startIndex, endIndex);
+        const rows = tableArray.slice(startIndex, endIndex);
         // Column names from the first record or row. If atleast one of these exist, let's go on
-        const columnName = tableArray.length > 0 ? Object.keys(tableArray[0]) : [];
+        const columnNames = tableArray.length > 0 ? Object.keys(tableArray[0]) : [];
         // Building our table HTML content
         const tableContent = `
                                 <table class="table table-responsive table-bordered border-dark-subtle">
                                     <thead>
-                                        ${columnName.map((value) => `
-                                            <th scope="col">${value}</th>
+                                        ${columnNames.map((columnName) => `
+                                            <th scope="col">${columnName}
+                                                <br>
+                                                <button class="btn btn-light sort-button" data-column="${columnName}" data-order="${sortOrder === 'asc' ? 'desc' : 'asc'}">
+                                                ${sortColumn === columnName ? (sortOrder === 'asc' ? '↑' : '↓') : '⇅'}</button>
+                                            </th>
                                             `).join("")}
                                     </thead>
                                     <tbody>
-                                        ${paginatedData.map((row) => `
+                                        ${rows.map((row) => `
                                             <tr>
-                                                ${columnName.map((columnName) => `
+                                                ${columnNames.map((columnName) => `
                                                     <td scope="col">
                                                         ${row[columnName || ""]}
                                                     </td>

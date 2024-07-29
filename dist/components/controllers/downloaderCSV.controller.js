@@ -7,12 +7,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-export function convertCsv(data, columnNames) {
+export function convertToCsv(data, columnNames) {
     return __awaiter(this, void 0, void 0, function* () {
         const csvRows = [];
-        //Add headers 
+        //Adding headers 
         csvRows.push(columnNames.join(","));
-        //Add data
+        //Adding data
         data.forEach(row => {
             const values = columnNames.map(column => row[column] || "");
             csvRows.push(values.join(""));
@@ -24,7 +24,7 @@ export function downloadCSV(csvContent, fileName) {
     return __awaiter(this, void 0, void 0, function* () {
         //Blob object with unalterable data and binary
         const blob = new Blob([csvContent], { type: 'text/csv; charset=UTF-8' });
-        //Downloading the blob as a file
+        //Downloading the Blob as a file
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
         link.download = fileName;

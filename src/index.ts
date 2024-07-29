@@ -1,8 +1,8 @@
 import { FileController } from "./controllers/file.controller.js";
-import { renderTable } from "./controllers/table.controller.js";
+import { renderTableTemplate } from "./controllers/tableTemplate.controller.js";
 import { filterData } from "./controllers/filter.controller.js";
-import { ColumnName, IDataRow } from "./models/file.model.js";
-import { convertCsv, downloadCSV } from "./controllers/downloader.controller.js";
+import { ColumnName, DataTable } from "./models/file.model.js";
+import { convertToCsv, downloadCSV } from "./controllers/downloaderCSV.controller.js";
 
 //---------------------------------------- Getting elements from HTML -----------------------
 
@@ -10,14 +10,16 @@ const csvForm = document.querySelector("#csvForm") as HTMLFormElement;
 const csvFile = document.querySelector("#csvFile") as HTMLInputElement;
 const contentArea = document.querySelector("#contentArea") as HTMLDivElement;
 const searchInput = document.querySelector("#searchInput") as HTMLInputElement;
-const downloadButton = document.querySelector("#downloadCSV") as HTMLButtonElement;
+const downloadFileButton = document.querySelector("#downloadCSV") as HTMLButtonElement;
 const paginationControlsNav = document.querySelector('#paginationControls') as HTMLElement;
 
 //---------------------------------------- Variables ---------------------------------------- 
 
 const recordsPerPage = 15
 let currentPage = 1
-let finalValues: IDataRow[] = []
+let sortColumn: string = '';
+let sortOrder: 'asc' | 'desc' = 'asc';
+let data: DataTable = []
 let columnNames: ColumnName = []
 
 //---------------------------------------- Functions for rendering pagination controls ----------------------------------
@@ -44,7 +46,7 @@ function pagination(totalRecords: number, currentPage: number, recordsPerPage: n
             </li>`;
     }
 
-    // Buttons
+    // Nav links (Buttons)
     let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
     let finalPage = Math.min(totalOfPages, currentPage + Math.floor(maxButtons / 2));
 
@@ -86,15 +88,57 @@ function pagination(totalRecords: number, currentPage: number, recordsPerPage: n
     return paginationHTML;
 }
 
-//---------------------------------------- addEvfor rendering the table and downloading ----------------------------------------
+//---------------------------------------- Rendering table with its controls ----------------
+async function renderTableController() {
+    const searchTerm: string = searchInput.value 
+    let filteredData: DataTable = filterData(data, searchTerm)
+
+    // Sorting data
+    if (sortColumn) {
+        const fileController = new FileController('');
+        fileController.data = filteredData;
+        fileController.sortData(sortColumn, sortOrder);
+        filteredData = fileController.getData();
+    }
+
+    contentArea.innerHTML = ''
+    //Render filtered data
+    const tableHTML: string = await renderTableTemplate(filteredData, currentPage, recordsPerPage, sortColumn, sortOrder)
+    contentArea.innerHTML += tableHTML
+
+    //Pagination nav
+    const paginationControls: string = pagination(filteredData.length, currentPage, recordsPerPage)
+    paginationControlsNav.innerHTML = paginationControls
+
+    // Re-select pagination links after rendering
+    const paginationLinks: NodeListOf<HTMLElement> = document.querySelectorAll('.page-link');
+
+    paginationLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            currentPage = parseInt(link.getAttribute('data-page')!)
+            renderTableController()
+        })
+    })
+
+    // Re-select pagination links after rendering
+    const sortingButtons: NodeListOf<HTMLElement> = document.querySelectorAll('.sort-button');
+
+    sortingButtons.forEach(button => {
+        button.addEventListener('click', (event: Event) => {
+            const target = event.target as HTMLButtonElement;
+            sortColumn = target.getAttribute('data-column')!;
+            sortOrder = target.getAttribute('data-order') as 'asc' | 'desc';
+            renderTableController();
+        });
+    });
+}
+
+//---------------------------------------- addEv for rendering the table and downloading ----------------------------------------
 
 document.addEventListener("DOMContentLoaded", () => {
     //----------------------------- Uploading the file ----------------------------->
-
-    csvForm.addEventListener("submit", async (ev: Event) => {
+    csvForm.addEventListener("submit", (ev: Event) => {
         ev.preventDefault()
-
-        const csvReader = new FileReader()
 
         // '!' : Not null
         // '?' : Not undefined
@@ -103,71 +147,43 @@ document.addEventListener("DOMContentLoaded", () => {
         //by the '.' character, and with pop() method we select the file extension
         //and save it in another variable
 
-        const input = csvFile.files![0]
-        const fileName = input.name
-        const fileExtension = fileName.split(".").pop()?.toLowerCase()
+        const inputFile: File = csvFile.files![0]
+        const fileReader: FileReader = new FileReader()
+        const fileName: string = inputFile.name
+        const fileExtension: string | undefined = fileName.split('.').pop()?.toLowerCase()
 
-        if (fileExtension !== 'csv' && fileExtension !== 'txt') {
-            alert("Invalid file format. Please select a .csv or .txt file.")
+        if (fileExtension !== 'csv') {
+            alert("Invalid file format. Please upload a .csv file.")
             return
         }
 
-        csvReader.onload = async function (event) {
-            const text = event.target?.result as string
-            const fileController = new FileController(text)
-            finalValues = fileController.getData()
+        fileReader.onload = async (event: ProgressEvent) => {
+            const fileContent: string = (event.target as FileReader).result as string;
+            const fileController: FileController = new FileController(fileContent);
+            fileController.processFile()
+            data = fileController.getData()
             columnNames = fileController.getColumnNames()
 
-            await renderTableControls()
+            await renderTableController()
         }
-
-        csvReader.readAsText(input)
+        fileReader.readAsText(inputFile)
     })
 
     //----------------------------- Downloading the file ----------------------------->
 
-    downloadButton.addEventListener('click', async (ev: Event) => {
+    downloadFileButton.addEventListener('click', async (ev: Event) => {
         ev.preventDefault()
         //Filtered data
-        const searchTerm: string = searchInput.value
-        const dataFilteredValues = filterData(finalValues, searchTerm)
-        const csvContent = await convertCsv(dataFilteredValues, columnNames)
-        await downloadCSV(csvContent, 'filtered_data.csv')
+        let searchTerm: string = searchInput.value
+        const filteredData = filterData(data, searchTerm)
+        const fileContent: string = await convertToCsv(filteredData, columnNames)
+        await downloadCSV(fileContent, 'filtered_data.csv')
     })
+
     //------------------------------ Searching ---------------------------------------->
 
     searchInput.addEventListener('input', async (ev: Event) => {
         ev.preventDefault()
-        await renderTableControls()
+        await renderTableController()
     })
 })
-
-//---------------------------------------- Rendering table with its controls ----------------
-async function renderTableControls() {
-    const searchTerm: string = searchInput.value 
-    const filteredValues = filterData(finalValues, searchTerm)
-
-    //Render filtered values
-    const tableHTML = await renderTable(filteredValues, currentPage, recordsPerPage)
-    contentArea.innerHTML = tableHTML
-
-    //Pagination nav
-    const paginationControls = pagination(filteredValues.length, currentPage, recordsPerPage)
-    paginationControlsNav!.innerHTML = paginationControls
-
-    // Re-select pagination links after rendering
-    const paginationLinks = document.querySelectorAll('.page-link') as NodeListOf<HTMLElement>;
-
-    //Current Page and Number of Pagination Links
-    paginationLinks.forEach(link => {
-        link.addEventListener('click', (ev) => {
-            ev.preventDefault()
-
-            const targetPage = Number((ev.target as HTMLElement).dataset.page)
-            if (targetPage) {
-                currentPage = targetPage
-                renderTableControls()
-            }
-        })
-    })
-}
