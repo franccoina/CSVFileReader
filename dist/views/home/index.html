@@ -1,0 +1,135 @@
+<!--FECHA: 25.07.24
+    CLAN: GATES
+    DAVID FRANCISCO BLANDÓN MENA -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <!-- Metadata and important links for CSS, Google Fonts and Bootstrap Styling -->
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description"
+            content="Welcome to our CSV File Reader. Just upload your .csv file, and then, enjoy. TypeScript - Functions, CRUD, OOP, Interfaces, MVC, Classes" />
+        <meta name="keywords"
+            content="TypeScript, Crud, Functions, Object Oriented Programming, CSV, File, Reader, Interfaces, David, Francisco, Blandon, Mena, franccoina, frn, riwi">
+        <meta name="sitedomain" content="https://riwi.io">
+        <meta name="organization" content=“RIWI_GATES”>
+        <meta name="author" content="David Francisco Blandon Mena">
+        <meta name="designer" content="David Francisco Blandon Mena">
+        <meta name="copyright" content="© 2024 Riwi. All rights reserved">
+        <meta name="robots" content="index,follow">
+        <meta name="googlebot" content="index,follow">
+        <meta name="revisit-after" content="15days">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="../styles/style.css">
+        <link rel="shortcut icon" href="../../assets/icons/favicon.ico"
+            type="image/x-icon">
+        <title>CSV File Reader</title>
+    </head>
+
+    <body>
+        <header>
+        </header>
+        <main>
+            <section class="container text-center">
+                <article class="row">
+                    <div
+                        class="col p-5 border border-dark-subtle w-100 mt-5 rounded text-bg-secondary">
+                        <h1><strong>CSV File Reader</strong></h1>
+                    </div>
+                </article>
+                <!-- Form Section for Uploading your .csv file -->
+                <article
+                    class="bg-body-tertiary my-5 p-5 row justify-content-center border-dark-subtle border rounded">
+                    <div class="col-4">
+                        <form action id="csvForm">
+                            <div>
+                                <label for="csvFile"><h3>File
+                                        Uploader</h3></label>
+                                <input type="file" id="csvFile"
+                                    class="form-control border border-dark-subtle"
+                                    name="csvFile" accept=".csv">
+                            </div>
+                            <div
+                                class="mb-3 gap-3 d-flex justify-content-start">
+                                <input type="submit"
+                                    class="mt-3 btn btn-primary" name="submit"
+                                    value="Submit">
+                                <!-- Downloading button -->
+                                <button type="button" id="downloadCSV"
+                                    class="mt-3 btn btn-secondary">Download
+                                    CSV</button>
+                            </div>
+                        </form>
+                    </div>
+                </article>
+                <hr>
+                <!-- Form Section for Searching -->
+                <article class="py-3 row justify-content-center">
+                    <form action id="searchForm" class="col">
+                        <div class="mb-3">
+                            <label for="searchInput" class="form-label"><i
+                                    class="bi bi-search"></i> Searcher</label>
+                            <input type="text"
+                                class="form-control border border-dark-subtle py-2 px-3"
+                                id="searchInput"
+                                placeholder="What do you want to look for today?">
+                        </div>
+                    </form>
+                </article>
+                <article class="row">
+                    <div class="col">
+                        <!-- Section for table with searching results -->
+                        <div id="contentArea"></div>
+                        <!-- Section for pagination/paging -->
+                        <nav id="paginationControls"
+                            class="pt-3 d-flex justify-content-center"></nav>
+                    </div>
+                </article>
+            </section>
+        </main>
+        <!-- Footer with legal info and social media -->
+        <footer class="mt-5 pb-5 w-100">
+            <div
+                class="bg-body-tertiary border border-dark-subtle container text-center p-5 rounded">
+                <p class="text-secondary mb-5">Empower your data journey with
+                    CSV File Reader. Upload, explore,
+                    filter and download your data effortlessly. What are you
+                    waiting for to transform your
+                    files into actionable insights?</p>
+                <div class="footer-links text-center">
+                    <!-- Icons from Bootstrap -->
+                    <a href="https://x.com/?lang=es" rel="noopener"
+                        target="_blank" class="text-secondary mx-4"><i
+                            class="bi bi-twitter-x"></i></a>
+                    <a href="https://www.facebook.com/" rel="noopener"
+                        target="_blank" class="text-secondary mx-4"><i
+                            class="bi bi-facebook"></i></a>
+                    <a href="https://www.instagram.com/?hl=es-la" rel="noopener"
+                        target="_blank"
+                        class="text-secondary mx-4"><i
+                            class="bi bi-instagram"></i></a>
+                </div>
+                <p class="text-center mt-5 text-secondary">&copy; All rights
+                    reserved | Clan Gates from 'Riwi, Be a Coder'</p>
+            </div>
+        </footer>
+        <!-- Script module for JS/TS and Bootstrap -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+        <script type="module" src="../../components/index.js"></script>
+    </body>
+
+</html>
