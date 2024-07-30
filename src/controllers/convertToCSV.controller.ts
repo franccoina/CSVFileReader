@@ -7,7 +7,7 @@ export async function convertToCsv(data: IDataRow[], columnNames: ColumnName): P
     //Adding data
     data.forEach(row => {
         const values = columnNames.map(column => row[column] || "");
-        csvRows.push(values.join(""));
+        csvRows.push(values.join(","));
     })
     return csvRows.join("\n");
 }
